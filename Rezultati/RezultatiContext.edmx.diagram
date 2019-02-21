@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ec3a42ef34354e7fbf8cfc36a31eca32" Name="Diagram1">
+        <EntityTypeShape EntityType="Rezultati_milicaPetrovicModel.Drzava" Width="1.5" PointX="0.75" PointY="4.25" />
+        <EntityTypeShape EntityType="Rezultati_milicaPetrovicModel.Grad" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="Rezultati_milicaPetrovicModel.Igrac" Width="1.5" PointX="7.5" PointY="5.625" />
+        <EntityTypeShape EntityType="Rezultati_milicaPetrovicModel.Kolo" Width="1.5" PointX="5.25" PointY="12.75" />
+        <EntityTypeShape EntityType="Rezultati_milicaPetrovicModel.Pozicije" Width="1.5" PointX="5.25" PointY="5.75" />
+        <EntityTypeShape EntityType="Rezultati_milicaPetrovicModel.Tim" Width="1.5" PointX="5.25" PointY="8.125" />
+        <EntityTypeShape EntityType="Rezultati_milicaPetrovicModel.UcinakIgraca" Width="1.5" PointX="9.75" PointY="8.625" />
+        <EntityTypeShape EntityType="Rezultati_milicaPetrovicModel.Utakmica" Width="1.5" PointX="7.5" PointY="10.875" />
+        <AssociationConnector Association="Rezultati_milicaPetrovicModel.FK_Grad_Drzava" />
+        <AssociationConnector Association="Rezultati_milicaPetrovicModel.FK_Igrac_Drzava" />
+        <AssociationConnector Association="Rezultati_milicaPetrovicModel.FK_Igrac_Grad" />
+        <AssociationConnector Association="Rezultati_milicaPetrovicModel.FK_Tim_Grad" />
+        <AssociationConnector Association="Rezultati_milicaPetrovicModel.FK_Igrac_Pozicije" />
+        <AssociationConnector Association="Rezultati_milicaPetrovicModel.FK_Igrac_Tim" />
+        <AssociationConnector Association="Rezultati_milicaPetrovicModel.FK_UcinakIgraca_Igrac" />
+        <AssociationConnector Association="Rezultati_milicaPetrovicModel.FK_Utakmica_Kolo" />
+        <AssociationConnector Association="Rezultati_milicaPetrovicModel.FK_Utakmica_Tim" />
+        <AssociationConnector Association="Rezultati_milicaPetrovicModel.FK_Utakmica_Tim1" />
+        <AssociationConnector Association="Rezultati_milicaPetrovicModel.FK_UcinakIgraca_Utakmica" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Unos rezultata za kolo</h2>
+
+<div>
+    <label>Kolo: </label>
+    @Html.DropDownList("Kolo", (List<SelectListItem>)ViewBag.Kola, new { id = "OdabranoKolo" })
+</div>
+
+<div id="Raspored"></div>
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('#OdabranoKolo').change(function () {
+                var id = Number($(this).val());
+                $.get('/UnosRezultata/VratiUtakmiceZaKolo', { id }, function (data, status) {
+                    $('#Raspored').html(data);
+                });
+            });
+            $("#OdabranoKolo").trigger("change");
+        });
+
+
+    </script>
+}

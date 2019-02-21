@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hr />
+
+<div id="DrzavaTableContainer"></div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#DrzavaTableContainer').jtable({
+                title: 'Drzave',
+                paging: true, //Enable paging
+                pageSize: 10, //Set page size (default: 10)  broj redova
+                sorting: true, //Enable sorting   po kolonama
+                defaultSorting: 'Naziv', //Set default sorting
+                actions: {
+                    listAction: '/Drzava/List',
+                    deleteAction: '/Drzava/Delete',
+                    updateAction: '/Drzava/Update',
+                    createAction: '/Drzava/Create'
+                },
+                fields: {
+                    DrzavaId: {
+                        key: true,
+                        create: false,   // true - bice...
+                        edit: false,
+                        list: false
+                    },
+                    Naziv: {
+                        title: 'Naziv',
+                        width: '23%'
+                    }             
+                }
+            });
+
+            //Load student list from server
+            $('#DrzavaTableContainer').jtable('load');    //pravi se ajax poziv i vraca nasu listu
+        });
+
+    </script>
+
+}

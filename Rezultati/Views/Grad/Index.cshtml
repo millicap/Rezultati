@@ -1,0 +1,56 @@
+﻿
+@{
+                /**/
+
+                ViewBag.Title = "Index";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hr/>
+
+
+<div id="GradTableContainer"></div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#GradTableContainer').jtable({
+                title: 'Gradovi',
+                paging: true, //Enable paging
+                pageSize: 10, //Set page size (default: 10)  broj redova
+                sorting: true, //Enable sorting   po kolonama
+                defaultSorting: 'DrzavaId', //Set default sorting
+                actions: {
+                    listAction: '/Grad/List',
+                    deleteAction: '/Grad/Delete',
+                    updateAction: '/Grad/Update',
+                    createAction: '/Grad/Create'
+                },
+                fields: {
+                    GradId: {
+                        key: true,
+                        create: false,   // true - bice...
+                        edit: false,
+                        list: false
+                    },
+                    DrzavaId: {
+                        title: 'Drzava',
+                        options: '/Grad/Drzava'
+                    },
+
+                    Naziv: {
+                        title: 'Naziv',
+                        width: '23%'
+                    }
+                }
+            });
+
+            //Load student list from server
+            $('#GradTableContainer').jtable('load');    //pravi se ajax poziv i vraca nasu listu
+        });
+
+    </script>
+
+}

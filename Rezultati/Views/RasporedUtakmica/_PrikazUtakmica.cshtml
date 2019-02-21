@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Rezultati.Models.UtakmicaViewModel>
+
+@if (Model.Count() == 0)
+{
+<p><center>Nema utakmica za izabrano kolo</center></p>
+}
+else
+{
+<table class="table">
+    <tr>
+        <th>@*Id*@</th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.DatumIgranja)*@
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model =>model.DomaciNaziv)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.BrojGolovaDomacina)*@
+        </th>
+        <th>@*crtica*@</th>
+        
+        <th>
+            @*@Html.DisplayNameFor(model => model.BrojGolovaGostujuceg)*@
+        </th>
+        
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.GostujuciNaziv)
+        </th>
+
+        <th>@*detalji*@</th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.HiddenFor(modelItem => item.UtakmicaId)
+        </td>
+        <td style="width:auto; text-align:center;">
+            @Html.DisplayFor(modelItem => item.DatumIgranja)
+        </td>
+        <td style="text-align:center">
+            @Html.DisplayFor(modelItem => item.DomaciNaziv)
+        </td>
+        <td>
+            @if (item.Odigrana)
+            {
+                @Html.DisplayFor(modelItem => item.BrojGolovaDomacina)
+            }
+        </td>
+        <td>-</td>
+        <td>
+            @if (item.Odigrana)
+            {
+                @Html.DisplayFor(modelItem => item.BrojGolovaGostujuceg)
+            }
+        </td>
+        
+        <td style="text-align:center">
+            @Html.DisplayFor(modelItem => item.GostujuciNaziv)
+        </td>
+        <td>
+            @Html.ActionLink("Detalji", "Details", new {  id=item.UtakmicaId  })
+        </td>
+    </tr>
+}
+
+</table>
+}

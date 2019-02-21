@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hr />
+
+<div id="PozicijeContainer"></div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#PozicijeContainer').jtable({
+                title: 'Pozicije',
+                paging: true, //Enable paging
+                pageSize: 10, //Set page size (default: 10)  broj redova
+                sorting: true, //Enable sorting   po kolonama
+                defaultSorting: 'Naziv', //Set default sorting
+                actions: {
+                    listAction: '/Pozicija/List',
+                    deleteAction: '/Pozicija/Delete',
+                    updateAction: '/Pozicija/Update',
+                    createAction: '/Pozicija/Create'
+                },
+                fields: {
+                    PozicijaId: {
+                        key: true,
+                        create: false,   // true - bice...
+                        edit: false,
+                        list: false
+                    },
+                    Naziv: {
+                        title: 'Naziv',
+                        width: '23%'
+                    }                
+                }
+            });
+
+            //Load student list from server
+            $('#PozicijeContainer').jtable('load');    //pravi se ajax poziv i vraca nasu listu
+        });
+
+    </script>
+
+}

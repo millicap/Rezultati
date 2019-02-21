@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hr />
+
+<div id="TimoviTableContainer"></div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#TimoviTableContainer').jtable({
+                title: 'Timovi',
+                paging: true, //Enable paging
+                pageSize: 10, //Set page size (default: 10)  broj redova
+                sorting: true, //Enable sorting   po kolonama
+                defaultSorting: 'GradId', //Set default sorting
+                actions: {
+                    listAction: '/Tim/List',
+                    deleteAction: '/Tim/Delete',
+                    updateAction: '/Tim/Update',
+                    createAction: '/Tim/Create'
+                },
+                fields: {
+                    TimId: {
+                        key: true,
+                        create: false,   // true - bice...
+                        edit: false,
+                        list: false
+                    },
+                    Naziv: {
+                        title: 'Naziv',
+                        width: '23%'
+                    },
+                   
+                    ImeTrenera: {
+                        title: 'Ime trenera '
+                       
+                    },
+                    PrezimeTrenera: {
+                        title: 'Prezime trenera'                        
+                    },
+                    GradId: {
+                        title: 'Grad',
+                        width: '13%',   
+                        options: '/Tim/GetCityOptions'
+                    },
+                    Stadion: {
+                        title: 'Stadion',
+                        width: '12%'                    
+                    }                 
+                }
+            });
+
+            //Load student list from server
+            $('#TimoviTableContainer').jtable('load');    //pravi se ajax poziv i vraca nasu listu
+        });
+
+    </script>
+
+}
+

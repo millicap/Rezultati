@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hr/>
+
+<div id="UtakmicaTableContainer"></div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#UtakmicaTableContainer').jtable({
+                title: 'Utakmice',
+                paging: true, //Enable paging
+                pageSize: 10, //Set page size (default: 10)  broj redova
+                sorting: true, //Enable sorting   po kolonama
+                defaultSorting: 'KoloId', //Set default sorting
+                actions: {
+                    listAction: '/Utakmica/List',
+                    deleteAction: '/Utakmica/Delete',
+                    updateAction: '/Utakmica/Update',
+                    createAction: '/Utakmica/Create'
+                },
+                fields: {
+                    UtakmicaId: {
+                        key: true,
+                        create: false,   // true - bice...
+                        edit: false,
+                        list: false
+                    },
+                    DatumIgranja: {
+                        title: 'Datum igranja',
+                        width: '15%',
+                        type: 'date'
+                    },
+                    KoloId: {
+                        title: 'Kolo',
+                        options: '/Utakmica/VratiKolo'
+                    },
+                    DomaciTimId: {
+                        title: 'Domaci',
+                        options: '/Utakmica/VratiDomaci'
+                    },
+                    GostujuciTimId: {
+                        title: 'Gosti',
+                        options: '/Utakmica/VratiGosti'
+                    },
+                    BrojGolovaDomacina: {
+                        title: 'Golovi domacina',
+                    },
+                    BrojGolovaGostujuceg: {
+                        title: 'Golovi gosta',
+                    },
+
+                    Odigrana: {
+                        type: 'checkbox',
+                        values: { 'false': 'NE', 'true': 'DA' }
+                    }
+                }
+            });
+
+            //Load student list from server
+            $('#UtakmicaTableContainer').jtable('load');    //pravi se ajax poziv i vraca nasu listu
+        });
+
+    </script>
+
+}
+

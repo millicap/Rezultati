@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<br />
+<div id="StatistikaTima"></div>
+<br/>
+
+<div id="Top5Strijelaca"></div>
+
+
+@section scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#StatistikaTima').jtable({
+                title: 'Statistika',
+                paging: true, //Enable paging
+                pageSize: 10, //Set page size (default: 10)  broj redova
+                sorting: true, //Enable sorting   po kolonama
+                defaultSorting: 'UkupanBrojBodova DESC, GolRazlika DESC',  //Set default sorting
+                actions: {
+                    listAction: '/StatistikaTima/List',
+                    //deleteAction: '/UcenikJTable/Delete',
+                    //updateAction: '/UcenikJTable/Update',
+                    //createAction: '/UcenikJTable/Create'
+                },
+                fields: {
+                    TimId: {
+                        key: true,
+                        create: false,   // true - bice...
+                        edit: false,
+                        list: false   //nece se prikazivati u list
+                    },
+                    TimNaziv: {
+                        title: 'Tim',
+                        width: '15%'
+                    },
+                    BrojPobjeda: {
+                        title: 'Broj pobjeda',
+                        width: '15%'
+                    },
+                    BrojPoraza: {
+                        title: 'Broj poraza'                     
+                    },
+                    BrojNerijesenih: {
+                        title: 'Broj nerijesenih',
+                        width: '15%'
+                    },
+                    GolRazlika: {
+                        title: 'GolRazlika',
+                       
+                        list: false
+                    },
+                    GolRazlikaIspis: {
+                        title: 'Gol razlika',
+                        width: '15%'
+                    },
+                    UkupanBrojBodova: {
+                        title: 'Ukupan broj bodova',
+                        width: '15%'                      
+                    }                  
+                }
+                });
+
+           //load from server
+            $('#StatistikaTima').jtable('load');    //pravi se ajax poziv i vraca nasu listu
+        });
+
+
+        $(document).ready(function () {
+
+            $('#Top5Strijelaca').jtable({
+                title: 'Top 5 Strijelaca',
+                paging: true, //Enable paging
+                pageSize: 10, //Set page size (default: 10)  broj redova
+                sorting: true, //Enable sorting   po kolonama
+                defaultSorting: 'BrojPostignutihGolova DESC',  //Set default sorting
+                actions: {
+                    listAction: '/StatistikaTima/Top5Strijelaca',
+                    //deleteAction: '/UcenikJTable/Delete',
+                    //updateAction: '/UcenikJTable/Update',
+                    //createAction: '/UcenikJTable/Create'
+                },
+                fields: {
+                    IgracId: {
+                        key: true,
+                        create: false,   // true - bice...
+                        edit: false,
+                        list: false   //nece se prikazivati u list
+                    },
+                    Ime: {
+                        title: 'Ime',
+                        width: '15%'
+                    },
+                    Prezime: {
+                        title: 'Prezime',
+                        width: '15%'
+                    },
+                    NazivTima: {
+                        title: 'Tim'
+                    },
+                    BrojPostignutihGolova: {
+                        title: 'Broj postignutih golova',
+                        width: '15%'
+                    }                
+                }
+            });
+
+            //load from server
+            $('#Top5Strijelaca').jtable('load');    //pravi se ajax poziv i vraca nasu listu
+        });
+
+    </script>
+}

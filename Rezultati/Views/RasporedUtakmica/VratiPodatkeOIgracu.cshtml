@@ -1,0 +1,161 @@
+﻿@model Rezultati.Models.IgracViewModel
+
+@{
+    ViewBag.Title = "VratiPodatkeOIgracu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Podaci o igracu</h2>
+
+<div>
+    <hr />
+    <div class="col-md-6">
+       
+            @* <dt>
+                    @Html.DisplayNameFor(model => model.IgracId)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.IgracId)
+                </dd>*@
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Ime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Ime)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Prezime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Prezime)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DatumRodjenja)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DatumRodjenja)
+            </dd>
+
+            @* <dt>
+                    @Html.DisplayNameFor(model => model.TimId)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TimId)
+                </dd>*@
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NazivTima)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NazivTima)
+            </dd>
+
+            @* <dt>
+                    @Html.DisplayNameFor(model => model.GradId)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.GradId)
+                </dd>*@
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NazivGrada)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NazivGrada)
+            </dd>
+
+            @*<dt>
+                    @Html.DisplayNameFor(model => model.DrzavaId)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DrzavaId)
+                </dd>*@
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NazivDrzave)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NazivDrzave)
+            </dd>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrojDresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrojDresa)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.PozicijaId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PozicijaId)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pozicija)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pozicija)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProsjekOdigranihMinuta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProsjekOdigranihMinuta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrojPostignutihGolova)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrojPostignutihGolova)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrojZutihKartona)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrojZutihKartona)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrojCrvenihKartona)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrojCrvenihKartona)
+        </dd>
+
+       
+
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

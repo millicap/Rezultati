@@ -1,0 +1,149 @@
+﻿@model Rezultati.Models.DetaljiUtakmiceViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .visina {
+        height: 20px;
+        margin: 2px, 4px;
+        font-size: 15px;
+    }
+
+    body {
+        background-color:white;
+    }
+
+    /*.borderi {
+       
+        background-color: lightgray;
+    }*/
+</style>
+
+<div class="container mica" style="background-color:white;">
+    <h4><center>Detalji utakmice</center></h4>
+    <hr />
+    <!-- zaglavlje stranice-->
+    <div class="form-group">
+        <div class="col-md-4 visina">
+            <center> Stadion: <b>  @Model.Stadion</b></center>
+        </div>
+        <div class="col-md-4 visina">
+            <center>Grad: <b>@Model.GradNaziv</b></center>
+        </div>
+        <div class="col-md-4 visina">
+            <center> Datum: <b>@Model.DatumIgranja</b></center>
+        </div>
+    </div>
+    <hr />
+    <hr />
+    <div class="form-group">
+        <div class="col-md-4 visina">
+            <center><b>@Model.DomaciNaziv</b></center>
+        </div>
+        <div class="col-md-4 visina">
+            <center> <b>@Model.GoloviDomacina  -  @Model.GoloviGosta</b></center>
+        </div>
+        <div class="col-md-4 visina">
+            <center><b>@Model.GostujuciNaziv</b></center>
+        </div>
+        <hr />
+        <hr />
+    </div>
+
+    <div class="form-group">
+        <span><center><b><div style="margin-top:20px; ; background-color:lightgray; font-size:20px;">Sastav ekipa</div></b></center></span>
+        <div name="DomacaEkipa" class="col-md-6 borderi">
+            <span><center>Trener: @Model.TrenerDomacih</center></span>
+            @foreach (var item in Model.DomaciIgraci)
+            {
+                <p>@Html.ActionLink( @item.Ime+" "+ @item.Prezime,"VratiPodatkeOIgracu", "RasporedUtakmica", new { id= item.IgracId}, new { }) @item.BrojDresa, @item.Pozicija
+            <button type="button" name="Igrac" data-IgracId="@item.IgracId" data-UtakmicaId="@item.UtakmicaId" data-igracNaziv='@item.Ime @item.Prezime'>&equiv;</button></p>
+                <p>
+                    
+                    Odigrao minuta: @item.BrojOdigranihMinuta, <br />
+                    Postigao golova:  @item.BrojPostignutihGolova <br />
+                    Zutih kartona: @item.BrojZutihKartona<br />
+                    Crveni karton: @if (item.CrvenihKarton)
+                    {<span style="color:red">DA</span> }
+                    else
+                    { <span>NE</span>}
+                </p>
+            }
+        </div>
+
+        <div name="GostujucaEkipa" class="col-md-6 borderi">
+            <span><center>Trener: @Model.TrenerGostujucih</center></span>
+            @foreach (var item in Model.GostijuciIgraci)
+            {
+            <div style="text-align:right">
+                <p>
+                    @Html.ActionLink(@item.Ime + " " + @item.Prezime, "VratiPodatkeOIgracu", "RasporedUtakmica", new { id = item.IgracId }, new { }) @item.BrojDresa, @item.Pozicija
+                    <button type="button" name="Igrac" data-IgracId='@item.IgracId' data-UtakmicaId='@item.UtakmicaId' data-igracNaziv='@item.Ime @item.Prezime'>&equiv;</button>
+                </p>
+                <p>
+                    Odigrao minuta: @item.BrojOdigranihMinuta <br />
+                    Postigao golova:  @item.BrojPostignutihGolova <br />
+                    Zutih kartona: @item.BrojZutihKartona<br />
+                    Crveni karton: @if (item.CrvenihKarton)
+                    {<span style="color:red">DA</span> }
+                    else
+                    { <span>NE</span>}
+                </p>
+            </div>
+            }
+        </div>
+    </div>
+    <hr />
+</div>
+
+<div class="modal "  id="modalPrikaz" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="btnX" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Unesi/Izmijeni ucinak za <span id="ImePrezimeIgraca"></span> </h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="col">
+                    <div class="row">
+                        <p style="color:red;" id="txtMessage"></p>
+                    </div>
+                </div>
+                <input type="number" id="IdUtakmice" hidden/>
+            
+                <input type="number" id="IdIgraca" hidden/>
+                <label for="MinuteIgre">Odigrao minuta:</label>
+                <input  class="form-control" type="number" id="MinuteIgre" name="MinuteIgre"/><br />
+
+                <label for="PostignutiGolovi"> Postigao golova:</label>
+                <input  class="form-control" type="number" id="PostignutiGolovi" name="PostignutiGolovi"/><br />
+
+                <label for="ZutiKartoni"> Zutih kartona:</label>
+                <select class="form-control" id="ZutiKartoni" name="ZutiKartoni">
+                    <option value="0">Bez zutih kartona</option>
+                    <option value="1">1 zuti karton</option>
+                    <option value="2">2 zuta (crveni)</option>
+                </select> <br />
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnOtkazi" class="btn btn-default" data-dismiss="modal">Otkazi</button>
+                <button type="button" id="btnSacuvaj" class="btn btn-primary">Sacuvaj</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@section scripts{
+    <script src="~/Scripts/js/unosUcinka.js"></script>
+
+}

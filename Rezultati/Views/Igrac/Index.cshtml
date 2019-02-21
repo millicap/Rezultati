@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hr/>
+
+<div id="IgracTableContainer"></div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#IgracTableContainer').jtable({
+                title: 'Igraci',
+                paging: true, //Enable paging
+                pageSize: 10, //Set page size (default: 10)  broj redova
+                sorting: true, //Enable sorting   po kolonama
+                defaultSorting: 'TimId', //Set default sorting
+                actions: {
+                    listAction: '/Igrac/List',
+                    deleteAction: '/Igrac/Delete',
+                    updateAction: '/Igrac/Update',
+                    createAction: '/Igrac/Create'
+                },
+                fields: {
+                    IgracId: {
+                        key: true,
+                        create: false,   // true - bice...
+                        edit: false,
+                        list: false
+                    },
+                    Ime: {
+                        title: 'Ime',
+                        width: '15%'
+                    },
+                    Prezime: {
+                        title: 'Prezime',
+                        width: '15%'
+                    },
+                    DatumRodjenja: {
+                        title: 'Datum rodjenja',
+                        width: '15%',
+                        type: 'date'
+                     
+                    },
+                    DrzavaRodjenjaId: {
+                        title: 'Drzava rodjenja',
+                        width: '10%',
+                        options: '/Igrac/VratiDrzavu'
+                    },
+                    MjestoRodjenjaId: {
+                        title: 'Mjesto rodjenja',
+                        width: '15%',
+                        options: '/Igrac/VratiGrad'
+                    },
+                    BrojDresa: {
+                        title: 'Broj dresa',
+                        width: '8%',
+                    
+                    },
+                    TimId: {
+                        title: 'Tim',
+                        width: '10%',
+                        options: '/Igrac/VratiTim'
+                    },
+                    PozicijaId: {
+                        title: 'Pozicija',
+                        width: '15%',
+                        options: '/Igrac/VratiPoziciju'
+                    }               
+                }
+            });
+
+            //Load student list from server
+            $('#IgracTableContainer').jtable('load');    //pravi se ajax poziv i vraca nasu listu
+        });
+
+    </script>
+
+}
+
+
